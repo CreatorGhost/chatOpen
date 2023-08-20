@@ -24,9 +24,25 @@ def generate_artile(tile):
     return response["choices"][0]["message"]["content"]
 
 
+def language_assistant(message):
+    response = openai.ChatCompletion.create(
+                model="gpt-4",
+                messages=[
+                    {
+                    "role": "system",
+                    "content": "You are very knowlegeble ai who have waste knowledge about Hindi languages as well as English and you work as a language translator to traslate from English to Hindi"
+                    },
+                    {
+                        "role": "user",
+                        "content": f" Translate the following message : {message}"
+                    }
+                ]
+                )
+    return response["choices"][0]["message"]["content"]
 
-title = "2008 Market Crash Report"
 
-res = generate_artile(title)
 
-print(res)
+message = "Hello welcome and thanks for the help"
+resposne = language_assistant(message)
+
+print(resposne)
